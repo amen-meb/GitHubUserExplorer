@@ -5,15 +5,23 @@ import UserCard from "../components/UserCard";
 import RepoList from "../components/RepoList";
 import SortSelect from "../components/SortSelect";
 import LanguageFilter from "../components/LanguageFilter";
+import SearchHistory from "../components/SearchHIstory";
 
 import useGitHubUser from "../hooks/useGitHubUser";
 import useGitHubRepos from "../hooks/useGitHubRepos";
+import useSearchHistory from "../hooks/useSearchHistory";
 
 export default function SearchPage() {
     const [username, setUsername] = useState<string>("");
     const [sortBy, setSortBy] = useState<string>("stars");
-    const [selectedLanguage, setSelectedLanguage] =
-        useState<string>("");
+    const [selectedLanguage, setSelectedLanguage] = useState<string>("");
+
+    const {
+        history,
+        addToHistory,
+        clearHistory,
+    } = useSearchHistory();
+
 
     const {
         user,
@@ -29,6 +37,7 @@ export default function SearchPage() {
 
     function handleSearch(newUsername: string) {
         setUsername(newUsername);
+        addToHistory(newUsername);
         setSelectedLanguage("");
     }
 
@@ -82,6 +91,12 @@ export default function SearchPage() {
                 </h1>
 
                 <SearchBar onSearch={handleSearch} />
+
+                <SearchHistory
+                    history={history}
+                    onSelect={handleSearch}
+                    onClear={clearHistory}
+                />
 
                 {loading && (
                     <p className="mt-6 text-gray-600">
