@@ -4,9 +4,11 @@ import UserCard from "../components/UserCard";
 import RepoList from "../components/RepoList";
 import useGitHubUser from "../hooks/useGitHubUser";
 import useGitHubRepos from "../hooks/useGitHubRepos";
+import SortSelect from "../components/SortSelect";
 
 export default function SearchPage() {
     const [username, setUsername] = useState<string>("");
+    const [sortBy, setSortBy] = useState<string>("stars");
 
     const {
         user,
@@ -23,6 +25,24 @@ export default function SearchPage() {
     function handleSearch(newUsername: string) {
         setUsername(newUsername);
     }
+
+    const sortedRepos = [...repos].sort((a, b) => {
+        if (sortBy === "stars") {
+            return b.stargazers_count - a.stargazers_count;
+        }
+        if (sortBy === "forks") {
+            return b.forks_count - a.forks_count;
+        }
+        if (sortBy === "updated") {
+            return (
+                new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+            );
+        }
+        if (sortBy === "name") {
+            return a.name.localeCompare(b.name);
+        }
+        return 0;
+    });
 
     return (
         <div className="min-h-screen bg-gray-100 p-4">
@@ -60,7 +80,16 @@ export default function SearchPage() {
                 )}
 
                 {user && !reposLoading && !reposError && (
-                    <RepoList repos={repos} />
+                    <>
+                        {sortedRepos.length > 0 && (
+                            <div className="mt-8">
+                                <SortSelect sortBy={sortBy} onSortChange={setSortBy} />
+                            </div>
+                        )}
+
+                        <RepoList repos={sortedRepos} />
+                    </>
+                    
                 )}
             </div>
         </div>

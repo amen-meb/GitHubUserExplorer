@@ -20,7 +20,7 @@ export default function RepoList({ repos }: RepoListProps) {
                 Repositories
             </h2>
 
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                 {repos.map((repo) => (
                     <RepoCard
                         key={repo.name}
