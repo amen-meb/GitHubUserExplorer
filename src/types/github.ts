@@ -18,3 +18,12 @@ export interface GitHubRepository {
   forks_count: number;
   updated_at: string;
 }
+
+export interface GitHubRepositoryDetail extends GitHubRepository {
+  full_name: string;
+  html_url: string;
+  watchers_count: number;
+  open_issues_count: number;
+  created_at: string;
+  updated_at: string;
+}

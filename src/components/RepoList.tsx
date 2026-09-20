@@ -3,9 +3,10 @@ import RepoCard from "./ReopCard";
 
 interface RepoListProps {
     repos: GitHubRepository[];
+    username: string;
 }
 
-export default function RepoList({ repos }: RepoListProps) {
+export default function RepoList({ repos, username }: RepoListProps) {
     if (repos.length === 0) {
         return (
             <p className="mt-6 text-gray-600">
@@ -25,6 +26,7 @@ export default function RepoList({ repos }: RepoListProps) {
                     <RepoCard
                         key={repo.name}
                         repo={repo}
+                        username={username}
                     />
                 ))}
             </div>

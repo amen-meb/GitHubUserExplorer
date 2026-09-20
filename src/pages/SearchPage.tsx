@@ -143,7 +143,7 @@ export default function SearchPage() {
                             </div>
                         )}
 
-                        <RepoList repos={sortedRepos} />
+                        <RepoList repos={sortedRepos} username={username} />
                     </>
                 )}
             </div>
