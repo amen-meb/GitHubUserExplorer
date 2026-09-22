@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { GitHubRepositoryDetail } from "../types/github";
 
-function useGitHubRepo(
+export default function useGitHubRepo(
     username: string,
     repoName: string
 ) {
@@ -64,4 +64,3 @@ function useGitHubRepo(
     };
 }
 
-export default useGitHubRepo;

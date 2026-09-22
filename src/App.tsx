@@ -13,11 +13,17 @@ export default function App() {
         return () => window.removeEventListener("popstate", handlePopState);
     }, []);
 
-    const isRepoRoute = /^\/repo\/[^/]+\/[^/]+$/.test(path);
+    const repoMatch = path.match(/^\/repo\/([^/]+)\/([^/]+)$/);
 
     return (
         path === "/" ? <SearchPage /> :
-        isRepoRoute ? <RepoDetail /> :
-        <NotFound />
+        repoMatch ? (
+            <RepoDetail
+                username={repoMatch[1]}
+                repoName={repoMatch[2]}
+            />
+        ) : (
+            <NotFound />
+        )
     );
 }
