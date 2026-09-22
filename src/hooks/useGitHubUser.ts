@@ -28,8 +28,18 @@ export default function useGitHubUser(username: string) {
                     return;
                 }
 
+                if (responses.status === 403 || responses.status === 429) {
+                    setError(
+                        "GitHub API rate limit exceeded. Please try again later."
+                    );
+                    setUser(null);
+                    return;
+                }
+
                 if (!responses.ok) {
-                    setError("Failed to fetch GitHub user");
+                    setError(
+                        `Failed to fetch GitHub user (${responses.status})`
+                    );
                     setUser(null);
                     return;
                 }

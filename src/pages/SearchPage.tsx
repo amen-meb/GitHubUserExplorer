@@ -98,31 +98,23 @@ export default function SearchPage() {
                     onClear={clearHistory}
                 />
 
-                {loading && (
-                    <p className="mt-6 text-gray-600">
-                        Searching...
-                    </p>
+                {(loading || reposLoading) && (
+                    <div
+                        role="status"
+                        className="mt-6 flex w-full items-center justify-center gap-3 text-gray-600"
+                    >
+                        <span className="size-10 animate-spin rounded-full border-4 border-gray-300 border-t-gray-700" />
+                        <span>Loading...</span>
+                    </div>
                 )}
 
-                {error && (
+                {(error || reposError) && (
                     <p className="mt-6 text-red-600">
-                        {error}
+                        {error ?? reposError}
                     </p>
                 )}
 
                 {user && <UserCard user={user} />}
-
-                {reposLoading && (
-                    <p className="mt-6 text-gray-600">
-                        Loading repositories...
-                    </p>
-                )}
-
-                {reposError && (
-                    <p className="mt-6 text-red-600">
-                        {reposError}
-                    </p>
-                )}
 
                 {user && !reposLoading && !reposError && (
                     <>
