@@ -8,9 +8,6 @@ export default function useGitHubRepos(username: string) {
 
     useEffect(() => {
         if (!username.trim()) {
-            setRepos([]);
-            setError(null);
-            setLoading(false);
             return;
         }
 

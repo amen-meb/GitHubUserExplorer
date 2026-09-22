@@ -10,7 +10,22 @@ export default function useSearchHistory() {
             return [];
         }
 
-        return JSON.parse(savedHistory);
+        try {
+            const parsedHistory: unknown = JSON.parse(savedHistory);
+
+            if (
+                Array.isArray(parsedHistory) &&
+                parsedHistory.every(
+                    (item): item is string => typeof item === "string"
+                )
+            ) {
+                return parsedHistory;
+            }
+        } catch {
+            localStorage.removeItem(STORAGE_KEY);
+        }
+
+        return [];
     });
 
     useEffect(() => {

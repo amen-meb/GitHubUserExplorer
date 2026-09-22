@@ -3,14 +3,11 @@ import type { GitHubUser } from "../types/github";
 
 export default function useGitHubUser(username: string) {
     const [user, setUser] = useState<GitHubUser | null>(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         if (!username.trim()) {
-            setUser(null);
-            setLoading(false);
-            setError(null);
             return;
         } 
 
@@ -45,7 +42,7 @@ export default function useGitHubUser(username: string) {
                 }
                 const userData: GitHubUser = await responses.json();
                 setUser(userData);
-            } catch (err) {
+            } catch {
                 setError("Something went wrong. Please try again later.");
             } finally {
                 setLoading(false);
