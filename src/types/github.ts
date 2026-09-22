@@ -27,3 +27,11 @@ export interface GitHubRepositoryDetail extends GitHubRepository {
   created_at: string;
   updated_at: string;
 }
+
+export interface GitHubRateLimit {
+    rate: {
+        limit: number;
+        remaining: number;
+        reset: number;
+    };
+}

@@ -19,13 +19,16 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="flex items-center gap-2">
+        <form
+            onSubmit={handleSubmit}
+            className="flex w-full items-center gap-2 sm:w-auto"
+        >
             <input
                 type="text"
                 placeholder="Enter GitHub username..."
                 value={username}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUsername(event.target.value)}
-                className="border border-gray-300 rounded-md py-2 px-8 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full rounded-md border border-gray-300 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:w-[420px]"
             />
             <button
                 type="submit"

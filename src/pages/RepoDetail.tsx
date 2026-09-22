@@ -1,4 +1,5 @@
 import useGitHubRepo from "../hooks/useGitHubRepo";
+import NotFound from "./NotFound";
 
 interface RepoDetailProps {
     username: string;
@@ -36,6 +37,15 @@ export default function RepoDetail({
     }
 
     if (error) {
+        if (error.toLowerCase().includes("not found")) {
+            return (
+                <NotFound
+                    title="Repository Not Found"
+                    message="This repository does not exist or is not publicly available."
+                />
+            );
+        }
+
         return (
             <div className="min-h-screen bg-gray-100 p-4">
                 <div className="mx-auto max-w-4xl">

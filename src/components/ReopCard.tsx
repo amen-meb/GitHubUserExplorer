@@ -1,4 +1,5 @@
 import type { GitHubRepository } from "../types/github";
+import { useNavigate } from "react-router-dom";
 
 interface RepoCardProps {
     repo: GitHubRepository;
@@ -6,15 +7,24 @@ interface RepoCardProps {
 }
 
 export default function RepoCard({ repo, username }: RepoCardProps) {
+    const navigate = useNavigate();
+
     function handleOpenRepo(event: React.MouseEvent<HTMLAnchorElement>) {
         event.preventDefault();
-        const nextPath = `/repo/${username}/${repo.name}`;
-        window.history.pushState({}, "", nextPath);
-        window.dispatchEvent(new PopStateEvent("popstate"));
+        window.history.replaceState(
+            {
+                ...window.history.state,
+                returnRepo: repo.name,
+            },
+            "",
+            "/"
+        );
+        navigate(`/repo/${username}/${repo.name}`);
     }
 
     return (
         <a
+            id={`repo-card-${encodeURIComponent(repo.name)}`}
             href={`/repo/${username}/${repo.name}`}
             onClick={handleOpenRepo}
             className="block rounded-lg border border-gray-200 bg-white p-5 shadow-sm transition hover:border-gray-300 hover:shadow-md"

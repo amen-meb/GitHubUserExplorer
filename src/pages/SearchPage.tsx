@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import SearchBar from "../components/SearchBar";
 import UserCard from "../components/UserCard";
@@ -6,13 +6,20 @@ import RepoList from "../components/RepoList";
 import SortSelect from "../components/SortSelect";
 import LanguageFilter from "../components/LanguageFilter";
 import SearchHistory from "../components/SearchHIstory";
+import RateLimit from "../components/RateLimit";
+import NotFound from "./NotFound";
+import useGitHubRateLimit from "../hooks/useGitHubRateLimit";
 
 import useGitHubUser from "../hooks/useGitHubUser";
 import useGitHubRepos from "../hooks/useGitHubRepos";
 import useSearchHistory from "../hooks/useSearchHistory";
 
 export default function SearchPage() {
-    const [username, setUsername] = useState<string>("");
+    const [username, setUsername] = useState<string>(() => (
+        typeof window.history.state?.username === "string"
+            ? window.history.state.username
+            : ""
+    ));
     const [sortBy, setSortBy] = useState<string>("stars");
     const [selectedLanguage, setSelectedLanguage] = useState<string>("");
 
@@ -21,6 +28,12 @@ export default function SearchPage() {
         addToHistory,
         clearHistory,
     } = useSearchHistory();
+
+    const {
+        rateLimit,
+        loading: rateLimitLoading,
+        error: rateLimitError,
+    } = useGitHubRateLimit();
 
 
     const {
@@ -35,7 +48,33 @@ export default function SearchPage() {
         error: reposError,
     } = useGitHubRepos(username);
 
+    useEffect(() => {
+        const returnRepo = window.history.state?.returnRepo;
+
+        if (!username || !repos.length || typeof returnRepo !== "string") {
+            return;
+        }
+
+        const repoCard = document.getElementById(
+            `repo-card-${encodeURIComponent(returnRepo)}`
+        );
+
+        if (repoCard) {
+            repoCard.scrollIntoView({ behavior: "smooth", block: "center" });
+            window.history.replaceState(
+                { ...window.history.state, returnRepo: undefined },
+                "",
+                "/"
+            );
+        }
+    }, [repos, username]);
+
     function handleSearch(newUsername: string) {
+        window.history.replaceState(
+            { username: newUsername },
+            "",
+            "/"
+        );
         setUsername(newUsername);
         addToHistory(newUsername);
         setSelectedLanguage("");
@@ -83,6 +122,16 @@ export default function SearchPage() {
         return 0;
     });
 
+    if (error?.toLowerCase().includes("not found")) {
+        return (
+            <NotFound
+                title="GitHub User Not Found"
+                message="That GitHub username does not exist."
+                onBack={() => setUsername("")}
+            />
+        );
+    }
+
     return (
         <div className="min-h-screen bg-gray-100 p-4">
             <div className="mx-auto max-w-6xl">
@@ -90,7 +139,20 @@ export default function SearchPage() {
                     GitHub User Explorer
                 </h1>
 
-                <SearchBar onSearch={handleSearch} />
+                <div className="mb-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+                    <p className="text-gray-600">
+                        Enter a GitHub username to view the user's
+                        profile and repositories.
+                    </p>
+                </div>
+                <div className="mb-6 flex flex-col gap-5 rounded-lg border border-gray-200 bg-white p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+
+                    <SearchBar onSearch={handleSearch} />
+
+                    {rateLimit && !rateLimitLoading && !rateLimitError && (
+                        <RateLimit rateLimit={rateLimit} />
+                    )}
+                </div>
 
                 <SearchHistory
                     history={history}
