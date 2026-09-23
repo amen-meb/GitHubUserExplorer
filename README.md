@@ -1,41 +1,79 @@
 # GitHub User Explorer
 
-A Vite, React, and TypeScript application for searching GitHub users, viewing profile information, filtering and sorting repositories, and opening repository details.
+A React + TypeScript application for searching GitHub users, viewing profile details, browsing repositories, and filtering/sorting results from the GitHub API.
+
+## Overview
+
+This app helps users explore any public GitHub account by:
+
+- searching for a GitHub username
+- viewing user profile information
+- listing repositories
+- sorting repositories by stars, forks, update time, or name
+- filtering by language
+- keeping recent search history in the browser
+- navigating to repository and profile detail views
+
+## Tech Stack
+
+- React
+- TypeScript
+- Vite
+- React Router
+- GitHub REST API
 
 ## Features
 
-- Typed GitHub API models and custom data-fetching hooks
-- User search with loading, not-found, rate-limit, and network error states
-- User profile and repository detail pages
-- Repository sorting by stars, forks, updated date, and name
-- Language filtering
-- Search history stored in typed localStorage state
-- React Router navigation with a wildcard 404 page
+- Search by GitHub username
+- User profile card with public profile metadata
+- Repository list with sort and language filtering
+- Repo detail page and route-based navigation
+- Search history stored in local storage
+- Loading, error, and not-found states
+- Rate limit status display
 
-## Development
+
+## Prerequisites
+
+- Node.js 20+ recommended
+- npm
+
+## Installation
 
 ```bash
 npm install
+```
+
+## Run Locally
+
+```bash
 npm run dev
 ```
 
-## Validation
+Then open the local URL shown in the terminal, usually:
+
+```text
+http://localhost:5173
+```
+
+## Build
 
 ```bash
-npm run lint
 npm run build
 ```
 
-## Deployment
+This creates the production bundle in the `dist` folder.
 
-This project includes `vercel.json` so client-side routes work correctly after deployment.
+## Lint
 
-1. Import the repository into Vercel.
-2. Use `npm run build` as the build command and `dist` as the output directory.
-3. Deploy the project.
-
-The same build command and `dist` directory can be used with Netlify. Configure a rewrite from `/*` to `/index.html` when deploying there.
-  },
-])
-
+```bash
+npm run lint
 ```
+
+## Notes
+
+- This app calls the public GitHub API directly from the browser.
+- GitHub API rate limits may affect usage depending on the environment and request volume.
+- No API key is required for public repository and user data requests.
+
+
