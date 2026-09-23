@@ -26,6 +26,7 @@ export default function SearchPage() {
     const {
         history,
         addToHistory,
+        removeFromHistory,
         clearHistory,
     } = useSearchHistory();
 
@@ -159,6 +160,7 @@ export default function SearchPage() {
                 <SearchHistory
                     history={history}
                     onSelect={handleSearch}
+                    onRemove={removeFromHistory}
                     onClear={clearHistory}
                 />
 

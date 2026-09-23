@@ -1,12 +1,14 @@
 interface SearchHistoryProps {
     history: string[];
     onSelect: (username: string) => void;
+    onRemove: (username: string) => void;
     onClear: () => void;
 }
 
 export default function SearchHistory({
     history,
     onSelect,
+    onRemove,
     onClear,
 }: SearchHistoryProps) {
     if (history.length === 0) {
@@ -31,14 +33,30 @@ export default function SearchHistory({
 
             <div className="flex flex-wrap gap-2">
                 {history.map((username) => (
-                    <button
+                    <div
                         key={username}
-                        type="button"
-                        onClick={() => onSelect(username)}
-                        className="rounded-full bg-gray-100 px-4 py-2 text-sm hover:bg-gray-200"
+                        className="group relative"
                     >
-                        {username}
-                    </button>
+                        <button
+                            type="button"
+                            onClick={() => onSelect(username)}
+                            className="rounded-lg bg-gray-100 px-4 py-2 text-sm hover:bg-gray-200"
+                        >
+                            {username}
+                        </button>
+
+                        <button
+                            type="button"
+                            aria-label={`Remove ${username} from search history`}
+                            onClick={(event) => {
+                                event.stopPropagation();
+                                onRemove(username);
+                            }}
+                            className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full border border-gray-300 bg-white text-[10px] font-bold text-red-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-red-100"
+                        >
+                            ×
+                        </button>
+                    </div>
                 ))}
             </div>
         </div>

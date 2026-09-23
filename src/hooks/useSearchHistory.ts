@@ -48,6 +48,12 @@ export default function useSearchHistory() {
         });
     }
 
+    function removeFromHistory(username: string) {
+        setHistory((currentHistory) =>
+            currentHistory.filter((item) => item !== username)
+        );
+    }
+
     function clearHistory() {
         setHistory([]);
     }
@@ -55,6 +61,7 @@ export default function useSearchHistory() {
     return {
         history,
         addToHistory,
+        removeFromHistory,
         clearHistory,
     };
 }
