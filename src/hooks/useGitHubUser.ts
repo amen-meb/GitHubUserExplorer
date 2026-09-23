@@ -8,8 +8,11 @@ export default function useGitHubUser(username: string) {
 
     useEffect(() => {
         if (!username.trim()) {
+            setUser(null);
+            setError(null);
+            setLoading(false);
             return;
-        } 
+        }
 
         async function fetchGitHubData() {
             setLoading(true);
