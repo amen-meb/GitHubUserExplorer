@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { GitHubRateLimit } from "../types/github";
 
 export default function useGitHubRateLimit() {
@@ -11,40 +11,41 @@ export default function useGitHubRateLimit() {
     const [error, setError] =
         useState<string | null>(null);
 
-    useEffect(() => {
-        async function fetchRateLimit() {
-            try {
-                const response = await fetch(
-                    "https://api.github.com/rate_limit"
-                );
+    const fetchRateLimit = useCallback(async () => {
+        try {
+            const response = await fetch(
+                "https://api.github.com/rate_limit"
+            );
 
-                if (!response.ok) {
-                    setError(
-                        "Failed to fetch rate limit"
-                    );
-                    return;
-                }
-
-                const data: GitHubRateLimit =
-                    await response.json();
-
-                setRateLimit(data);
-            } catch {
+            if (!response.ok) {
                 setError(
-                    "Something went wrong while checking the rate limit."
+                    "Failed to fetch rate limit"
                 );
-            } finally {
-                setLoading(false);
+                return;
             }
-        }
 
-        fetchRateLimit();
+            const data: GitHubRateLimit =
+                await response.json();
+
+            setRateLimit(data);
+        } catch {
+            setError(
+                "Something went wrong while checking the rate limit."
+            );
+        } finally {
+            setLoading(false);
+        }
     }, []);
+
+    useEffect(() => {
+        void fetchRateLimit();
+    }, [fetchRateLimit]);
 
     return {
         rateLimit,
         loading,
         error,
+        refetch: fetchRateLimit,
     };
 }
 

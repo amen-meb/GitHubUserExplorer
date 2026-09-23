@@ -33,6 +33,7 @@ export default function SearchPage() {
         rateLimit,
         loading: rateLimitLoading,
         error: rateLimitError,
+        refetch: refetchRateLimit,
     } = useGitHubRateLimit();
 
 
@@ -78,6 +79,7 @@ export default function SearchPage() {
         setUsername(newUsername);
         addToHistory(newUsername);
         setSelectedLanguage("");
+        void refetchRateLimit();
     }
 
     const languages = Array.from(
