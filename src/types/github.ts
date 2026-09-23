@@ -17,6 +17,7 @@ export interface GitHubRepository {
   stargazers_count: number;
   forks_count: number;
   updated_at: string;
+  html_url: string;
 }
 
 export interface GitHubRepositoryDetail extends GitHubRepository {

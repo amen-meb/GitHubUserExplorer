@@ -66,7 +66,7 @@ export default function RepoDetail({
             <div className="mx-auto max-w-4xl">
                 <button type="button"
                     onClick={handleBack}
-                    className="mb-4 rounded-lg bg-gray-900 px-4 py-2 text-white hover:bg-gray-700"
+                    className="mb-4 rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
                 >
                     Back
                 </button>
@@ -150,7 +150,7 @@ export default function RepoDetail({
                         href={repo.html_url}
                         target="_blank"
                         rel="noreferrer"
-                        className="mt-6 inline-block rounded-lg bg-gray-900 px-5 py-3 text-white hover:bg-gray-700"
+                        className="mt-6 inline-block rounded-lg bg-blue-500 px-5 py-3 text-white hover:bg-blue-600"
                     >
                         View on GitHub
                     </a>
