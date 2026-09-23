@@ -185,7 +185,7 @@ export default function SearchPage() {
                 {user && !reposLoading && !reposError && (
                     <>
                         {repos.length > 0 && (
-                            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-start">
                                 <SortSelect
                                     sortBy={sortBy}
                                     onSortChange={setSortBy}

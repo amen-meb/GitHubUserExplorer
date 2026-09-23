@@ -35,12 +35,12 @@ export default function SearchHistory({
                 {history.map((username) => (
                     <div
                         key={username}
-                        className="group relative"
+                        className="group relative inline-flex"
                     >
                         <button
                             type="button"
                             onClick={() => onSelect(username)}
-                            className="rounded-lg bg-gray-100 px-4 py-2 text-sm hover:bg-gray-200"
+                            className="rounded-lg bg-gray-100 px-3 py-2 text-sm leading-none text-gray-700 hover:bg-gray-200"
                         >
                             {username}
                         </button>
@@ -52,7 +52,7 @@ export default function SearchHistory({
                                 event.stopPropagation();
                                 onRemove(username);
                             }}
-                            className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full border border-gray-300 bg-white text-[10px] font-bold text-red-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-red-100"
+                            className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full border border-gray-300 bg-white text-[9px] font-bold text-red-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-red-100"
                         >
                             ×
                         </button>
