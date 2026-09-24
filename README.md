@@ -2,6 +2,10 @@
 
 A React + TypeScript application for searching GitHub users, viewing profile details, browsing repositories, and filtering/sorting results from the GitHub API.
 
+## Live Demo
+
+https://git-hub-user-explorer-five.vercel.app/
+
 ## Overview
 
 This app helps users explore any public GitHub account by:
@@ -74,6 +78,6 @@ npm run lint
 
 - This app calls the public GitHub API directly from the browser.
 - GitHub API rate limits may affect usage depending on the environment and request volume.
-- No API key is required for public repository and user data requests.
+
 
 
