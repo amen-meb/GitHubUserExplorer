@@ -136,19 +136,15 @@ export default function SearchPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-100 p-4">
+        <div className="min-h-screen bg-transparent p-4">
             <div className="mx-auto max-w-6xl">
-                <h1 className="mb-4 text-3xl font-bold">
-                    GitHub User Explorer
-                </h1>
-
-                <div className="mb-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-                    <p className="text-gray-600">
+                <div className="mb-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-slate-900 dark:text-slate-100">
+                    <p className="text-gray-600 dark:text-slate-300">
                         Enter a GitHub username to view the user's
                         profile and repositories.
                     </p>
                 </div>
-                <div className="mb-6 flex flex-col gap-5 rounded-lg border border-gray-200 bg-white p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+                <div className="mb-6 flex flex-col gap-5 rounded-lg border border-gray-200 bg-white p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between dark:border-gray-700 dark:bg-slate-900 dark:text-slate-100">
 
                     <SearchBar onSearch={handleSearch} />
 

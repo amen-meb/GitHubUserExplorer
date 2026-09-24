@@ -28,11 +28,11 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
                 placeholder="Enter GitHub username..."
                 value={username}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => setUsername(event.target.value)}
-                className="w-full rounded-md border border-gray-300 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:w-[420px]"
+                className="w-full rounded-md border border-gray-300 bg-white px-5 py-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:w-[420px] dark:border-gray-600 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-400"
             />
             <button
                 type="submit"
-                className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-blue-600 dark:hover:bg-blue-500"
             >
                 Search
             </button>

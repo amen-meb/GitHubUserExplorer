@@ -9,23 +9,32 @@ import SearchPage from "./pages/SearchPage";
 import RepoDetail from "./pages/RepoDetail";
 import NotFound from "./pages/NotFound";
 import UserProfile from "./pages/UserProfile";
+import Header from "./components/Header";
+import { ThemeProvider } from "./context/ThemeContext";
 
 export default function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<SearchPage />} />
-                <Route
-                    path="/user/:username"
-                    element={<UserProfileRoute />}
-                />
-                <Route
-                    path="/repo/:username/:repoName"
-                    element={<RepoDetailRoute />}
-                />
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-        </BrowserRouter>
+        <ThemeProvider>
+            <BrowserRouter>
+                <Header />
+
+                <Routes>
+                    <Route path="/" element={<SearchPage />} />
+
+                    <Route
+                        path="/user/:username"
+                        element={<UserProfileRoute />}
+                    />
+
+                    <Route
+                        path="/repo/:username/:repoName"
+                        element={<RepoDetailRoute />}
+                    />
+
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            </BrowserRouter>
+        </ThemeProvider>
     );
 }
 

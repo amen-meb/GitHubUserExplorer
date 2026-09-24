@@ -1,16 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --panel-soft: #f3f4f6;
+  --text: #172033;
+  --muted: #4b5563;
+  --line: #e5e7eb;
+  --card-shadow: rgba(15, 23, 42, 0.06);
+}
+
+html.dark {
+  --bg: #020817;
+  --panel: #0f172a;
+  --panel-soft: #111827;
+  --text: #f8fafc;
+  --muted: #cbd5e1;
+  --line: #334155;
+  --card-shadow: rgba(15, 23, 42, 0.35);
+}
+
+html,
+body,
 #root {
   min-height: 100vh;
 }
 
 body {
   margin: 0;
-  background: #f6f7f9;
-  color: #172033;
+  background: var(--bg);
+  color: var(--text);
   font-family: 'DM Sans', sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+button,
+input,
+select {
+  font: inherit;
 }

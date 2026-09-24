@@ -12,17 +12,17 @@ export default function NotFound({
     onBack,
 }: NotFoundProps) {
     return (
-        <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
+        <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4 dark:bg-slate-950">
             <div className="text-center">
-                <h1 className="text-6xl font-bold">
+                <h1 className="text-6xl font-bold dark:text-white">
                     404
                 </h1>
 
-                <h2 className="mt-4 text-2xl font-semibold">
+                <h2 className="mt-4 text-2xl font-semibold dark:text-white">
                     {title}
                 </h2>
 
-                <p className="mt-2 text-gray-600">
+                <p className="mt-2 text-gray-600 dark:text-slate-300">
                     {message}
                 </p>
 
@@ -30,14 +30,14 @@ export default function NotFound({
                     <button
                         type="button"
                         onClick={onBack}
-                        className="mt-6 rounded-lg bg-gray-900 px-5 py-3 text-white hover:bg-gray-700"
+                        className="mt-6 rounded-lg bg-gray-900 px-5 py-3 text-white hover:bg-gray-700 dark:bg-slate-700 dark:hover:bg-slate-600"
                     >
                         Back to Search
                     </button>
                 ) : (
                     <Link
                         to="/"
-                        className="mt-6 inline-block rounded-lg bg-gray-900 px-5 py-3 text-white hover:bg-gray-700"
+                        className="mt-6 inline-block rounded-lg bg-gray-900 px-5 py-3 text-white hover:bg-gray-700 dark:bg-slate-700 dark:hover:bg-slate-600"
                     >
                         Back to Search
                     </Link>

@@ -10,14 +10,14 @@ export default function RateLimit({
     const { limit, remaining } = rateLimit.rate;
 
     return (
-        <div className="w-full rounded-lg border border-gray-200 bg-gray-50 p-4 sm:w-64">
+        <div className="w-full rounded-lg border border-gray-200 bg-gray-50 p-4 sm:w-64 dark:border-gray-700 dark:bg-slate-800">
             <div className="flex items-center justify-between">
                 <div>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-500 dark:text-slate-300">
                         API Requests Remaining
                     </p>
 
-                    <p className="text-lg font-bold">
+                    <p className="text-lg font-bold dark:text-white">
                         {remaining} / {limit}
                     </p>
                 </div>

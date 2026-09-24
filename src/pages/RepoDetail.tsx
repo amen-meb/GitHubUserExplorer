@@ -26,9 +26,9 @@ export default function RepoDetail({
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-gray-100 p-4">
+            <div className="min-h-screen bg-gray-100 p-4 dark:bg-slate-950">
                 <div className="mx-auto max-w-4xl">
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-slate-300">
                         Loading repository...
                     </p>
                 </div>
@@ -47,9 +47,9 @@ export default function RepoDetail({
         }
 
         return (
-            <div className="min-h-screen bg-gray-100 p-4">
+            <div className="min-h-screen bg-gray-100 p-4 dark:bg-slate-950">
                 <div className="mx-auto max-w-4xl">
-                    <p className="text-red-600">
+                    <p className="text-red-600 dark:text-red-400">
                         {error}
                     </p>
                 </div>
@@ -62,7 +62,7 @@ export default function RepoDetail({
     }
 
     return (
-        <div className="min-h-screen bg-gray-100 p-4">
+        <div className="min-h-screen bg-gray-100 p-4 dark:bg-slate-950">
             <div className="mx-auto max-w-4xl">
                 <button type="button"
                     onClick={handleBack}
@@ -70,60 +70,60 @@ export default function RepoDetail({
                 >
                     Back
                 </button>
-                <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-                    <h1 className="text-3xl font-bold">
+                <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-slate-900 dark:text-slate-100">
+                    <h1 className="text-3xl font-bold dark:text-white">
                         {repo.name}
                     </h1>
 
                     {repo.description && (
-                        <p className="mt-3 text-gray-600">
+                        <p className="mt-3 text-gray-600 dark:text-slate-300">
                             {repo.description}
                         </p>
                     )}
 
                     <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
-                        <div className="rounded-lg bg-gray-100 p-4 text-center">
-                            <p className="text-sm text-gray-500">
+                        <div className="rounded-lg bg-gray-100 p-4 text-center dark:bg-slate-800">
+                            <p className="text-sm text-gray-500 dark:text-slate-300">
                                 Stars
                             </p>
 
-                            <p className="text-xl font-bold">
+                            <p className="text-xl font-bold dark:text-white">
                                 {repo.stargazers_count}
                             </p>
                         </div>
 
-                        <div className="rounded-lg bg-gray-100 p-4 text-center">
-                            <p className="text-sm text-gray-500">
+                        <div className="rounded-lg bg-gray-100 p-4 text-center dark:bg-slate-800">
+                            <p className="text-sm text-gray-500 dark:text-slate-300">
                                 Forks
                             </p>
 
-                            <p className="text-xl font-bold">
+                            <p className="text-xl font-bold dark:text-white">
                                 {repo.forks_count}
                             </p>
                         </div>
 
-                        <div className="rounded-lg bg-gray-100 p-4 text-center">
-                            <p className="text-sm text-gray-500">
+                        <div className="rounded-lg bg-gray-100 p-4 text-center dark:bg-slate-800">
+                            <p className="text-sm text-gray-500 dark:text-slate-300">
                                 Watchers
                             </p>
 
-                            <p className="text-xl font-bold">
+                            <p className="text-xl font-bold dark:text-white">
                                 {repo.watchers_count}
                             </p>
                         </div>
 
-                        <div className="rounded-lg bg-gray-100 p-4 text-center">
-                            <p className="text-sm text-gray-500">
+                        <div className="rounded-lg bg-gray-100 p-4 text-center dark:bg-slate-800">
+                            <p className="text-sm text-gray-500 dark:text-slate-300">
                                 Open Issues
                             </p>
 
-                            <p className="text-xl font-bold">
+                            <p className="text-xl font-bold dark:text-white">
                                 {repo.open_issues_count}
                             </p>
                         </div>
                     </div>
 
-                    <div className="mt-6 space-y-2 flex-row gap-2 text-gray-600">
+                    <div className="mt-6 space-y-2 flex-row gap-2 text-gray-600 dark:text-slate-300">
                         {repo.language && (
                             <p>
                                 <strong>Language:</strong>{" "}

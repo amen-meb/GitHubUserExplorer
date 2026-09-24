@@ -28,17 +28,16 @@ export default function RepoCard({ repo, username }: RepoCardProps) {
             id={`repo-card-${encodeURIComponent(repo.name)}`}
             href={`/repo/${username}/${repo.name}`}
             onClick={handleOpenRepo}
-            className="group block rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"        
-            >
-
+            className="group block rounded-xl border border-gray-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg dark:border-gray-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-500 dark:hover:shadow-slate-950/40"
+        >
             <div className="flex items-start justify-between gap-3">
-                <h3 className="text-xl font-semibold text-gray-900">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                     {repo.name}
                 </h3>
-                
+
                 <a href={repo.html_url} target="_blank" rel="noopener noreferrer"
                     onClick={(event) => event.stopPropagation()}
-                    className="shrink-0 text-gray-500 transition-colors hover:text-blue-700"
+                    className="shrink-0 text-gray-500 transition-colors hover:text-blue-700 dark:text-slate-300 dark:hover:text-blue-400"
                     aria-label={`Open ${repo.name} on GitHub`}
                 >
                     <ExternalLink size={18} />
@@ -46,18 +45,18 @@ export default function RepoCard({ repo, username }: RepoCardProps) {
             </div>
 
             {repo.description && (
-                <p className="mt-3 line-clamp-2 text-sm leading-6 text-gray-600">
+                <p className="mt-3 line-clamp-2 text-sm leading-6 text-gray-600 dark:text-slate-300">
                     {repo.description}
                 </p>
             )}
 
-            <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-gray-600">
+            <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-gray-600 dark:text-slate-300">
                 <div className="flex items-center gap-1.5">
                     <Star size={16} className="fill-yellow-400 text-yellow-400" />
                     <span>{repo.stargazers_count}</span>
                 </div>
 
-                <div className="h-4 w-px bg-gray-200" />
+                <div className="h-4 w-px bg-gray-200 dark:bg-slate-600" />
 
                 <div className="flex items-center gap-1.5">
                     <GitFork size={16} />
@@ -66,9 +65,9 @@ export default function RepoCard({ repo, username }: RepoCardProps) {
 
                 {repo.language && (
                     <>
-                        <div className="h-4 w-px bg-gray-200" />
+                        <div className="h-4 w-px bg-gray-200 dark:bg-slate-600" />
 
-                        <span className="flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700">
+                        <span className="flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700 dark:bg-blue-950/70 dark:text-blue-300">
                             <span className="h-2 w-2 rounded-full bg-blue-500" />
                             {repo.language}
                         </span>
@@ -76,14 +75,13 @@ export default function RepoCard({ repo, username }: RepoCardProps) {
                 )}
             </div>
 
-            <div className="mt-5 flex items-center gap-2 text-sm text-gray-500">
+            <div className="mt-5 flex items-center gap-2 text-sm text-gray-500 dark:text-slate-400">
                 <Clock size={16} />
 
                 <span>
                     Updated: {new Date(repo.updated_at).toLocaleDateString()}
                 </span>
             </div>
-
         </a>
     );
 }

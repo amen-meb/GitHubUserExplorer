@@ -11,8 +11,8 @@ export default function UserProfile({ username }: UserProfileProps) {
 
 	if (loading) {
 		return (
-			<div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
-				<p className="text-gray-600">Loading profile...</p>
+			<div className="flex min-h-screen items-center justify-center bg-gray-100 p-4 dark:bg-slate-950 dark:text-slate-100">
+				<p className="text-gray-600 dark:text-slate-300">Loading profile...</p>
 			</div>
 		);
 	}
@@ -28,8 +28,8 @@ export default function UserProfile({ username }: UserProfileProps) {
 
 	if (error) {
 		return (
-			<div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
-				<p className="text-red-600">{error}</p>
+			<div className="flex min-h-screen items-center justify-center bg-gray-100 p-4 dark:bg-slate-950 dark:text-slate-100">
+				<p className="text-red-600 dark:text-red-400">{error}</p>
 			</div>
 		);
 	}
@@ -39,7 +39,7 @@ export default function UserProfile({ username }: UserProfileProps) {
 	}
 
 	return (
-		<div className="min-h-screen bg-gray-100 p-4">
+		<div className="min-h-screen bg-gray-100 p-4 dark:bg-slate-950">
 			<div className="mx-auto max-w-4xl">
 				<UserCard user={user} />
 			</div>
